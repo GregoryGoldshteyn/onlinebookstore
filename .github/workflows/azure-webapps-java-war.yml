@@ -70,23 +70,22 @@ jobs:
         with:
           name: java-app
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: dannysongg/webapps-deploy-ds@enable-onedeploy
-        with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: '*.war'
-          type: war
-          clean: true
-#          target-path: (i.e. /home/site/wwwroot/test, /home/site/wwwroot/test.war)
-
-          restart: true
-
 #      - name: Deploy to Azure Web App
 #        id: deploy-to-webapp
-#        uses: azure/webapps-deploy@v2
+#        uses: dannysongg/webapps-deploy-ds@enable-onedeploy
 #        with:
 #          app-name: ${{ env.AZURE_WEBAPP_NAME }}
 #          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
 #          package: '*.war'
+#          type: war
+#          clean: true
+#          target-path: (i.e. /home/site/wwwroot/test, /home/site/wwwroot/test.war)
+#          restart: true
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: '*.war'
